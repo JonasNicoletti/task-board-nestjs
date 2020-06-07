@@ -1,0 +1,52 @@
+type Task {
+  id: Int!
+  title: String!
+  state: State!
+  category: Category
+  description: String
+  createdAt: String
+}
+type State {
+  id: Int!
+  name: String!
+  index: Int
+}
+type Category {
+  id: Int!
+  name: String!
+  color: String!
+}
+type Query {
+  tasks: [Task]!
+  task(id: ID!): Task
+  categories: [Category]!
+  states: [State]!
+}
+type Mutation {
+  createTask(task: CreateTaskDTO!): TaskDTO!
+  updateTask(task: UpdateTaskDTO!): TaskDTO!
+}
+type TaskDTO {
+  error: String
+  task: Task
+}
+input CreateTaskDTO {
+  title: String!
+  category: CategoryDTO
+  description: String
+}
+input UpdateTaskDTO {
+  id: ID!
+  title: String!
+  state: StateInput!
+  category: CategoryDTO
+  description: String
+}
+input CategoryDTO {
+  id: ID
+  name: String
+  color: String
+}
+input StateInput {
+  id: ID!
+}
