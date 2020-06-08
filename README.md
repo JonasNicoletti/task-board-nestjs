@@ -13,6 +13,8 @@ $ npm install
 ## Running the app
 
 This enviroment variables has do be defined(example values):
+  - SERVER_PORT=4000
+  - DATABASE_HOST=postgres <== this has to be the name of your postgress service in the docker-compose.yaml
   - PORT=4000
   - DATABASE_PORT=5432
   - DATABASE_USER=postgres
@@ -20,19 +22,11 @@ This enviroment variables has do be defined(example values):
   - DATABASE_DB=task_board
 
 ```bash
-# run docker for database
+
+# run docker with docker-compose
 $ systemctl start docker
 $ docker-compose up -d
 
-
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Test
