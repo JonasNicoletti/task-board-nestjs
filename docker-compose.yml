@@ -1,17 +1,39 @@
-version: '3'
+version: '3.7'
 
-services: 
-    db:
+services:
+    main:
+        container_name: main
+        build:
+            context: .
+            target: development
+        volumes:
+            - .:/usr/src/app
+            - /usr/src/app/node_modules
+        ports:
+            - ${SERVER_PORT}:${SERVER_PORT}
+            - 9229:9229
+        command: npm run start:dev
+        env_file:
+            - .env
+        networks:
+            - webnet
+        depends_on:
+            - postgres
+    postgres:
         container_name: postgres
-        image: postgres:9.6
-        ports: 
+        image: postgres:12
+        networks:
+            - webnet
+        ports:
             - ${DATABASE_PORT}:5432
-        environment: 
+        environment:
             POSTGRES_USER: ${DATABASE_USER}
             POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
             POSTGRES_DB: ${DATABASE_DB}
+            PG_DATA: /var/lib/postgresql/data
         volumes:
-            - ./pgdata:/var/lib/postgres/data
-            
-volumes: 
+            - pgdata:/var/lib/postgres/data
+networks:
+    webnet:
+volumes:
     pgdata:
