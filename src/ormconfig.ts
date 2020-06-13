@@ -1,6 +1,7 @@
 import { ConnectionOptions } from "typeorm";
 
 const config: ConnectionOptions = {
+    url: process.env.DATABASE_URL,
     type: 'postgres',
     name: 'default',
     host: process.env.DATABASE_HOST,
