@@ -1,0 +1,5 @@
+deploy:
+    provider: heroku
+    app: task-board-backend
+    on:
+        branch: master
