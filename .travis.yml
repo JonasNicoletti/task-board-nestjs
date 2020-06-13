@@ -1,15 +1,20 @@
 language: node_js
 node_js:
-    - "10"
-    - "node"
+- '10'
+- node
 before_install:
-    - npm i -g npm@latest
+- npm i -g npm@latest
 install:
-    - npm install
+- npm install
 script:
-    - npm run build
+- npm run build
 deploy:
-    provider: heroku
-    app: task-board-backend
-    on:
-        branch: master
+  provider: heroku
+  api_key:
+    secure: "$HEROKU_API_KEY"
+  app: task-board-backend
+  on:
+    branch: master
+env:
+  global:
+    secure: b1j+zd6yWPmpLxtgeg9gh+AaaLAiSnAefpOOQ3S8KhUtfULb8Wjbr9v0e06VvtPXkW9z/PU/nmGYCZkscs9NxTLtj6OAR/WO9HUXbuiOotFwCuUrDIR6I6PiQwm001v5E/IOo4hOKctGuqZ0g1r4yk6wIb5PGQlUXdbnnKyguiJqaZiOg9BwWGbo19Ju7127cYWHJbwM8+s/9tdAwCM6y/at2u+z5FRhRMhofNxa9O2H3Lgy5QhVva264RCRZ9w/rwJYjocWM2o6psOMADNwyp/VgGyodB2dvrxEAC3qN/MmThsawqUhtCDqMYdqAtLgAHDvm3nLlRUjiTRSHbFQWlJhJoQS8hnraGa79M3fnBVseu/qURzOpzo+Tjz4nG7pXVcxSswhaTTrP59v40hEB7+da9K+hvAGvLGeJGLHhU5NViK46/EfXM0aZIbpR8sB5GFCVwTRPew9s946erKEhotxWKkAWJnV1iRKNY9JQllBA/E0EyUMjx00oU7/+7JxvG/5g/Mu0h07CK5nmOV3J1RFgsLZiyQlGEdBwb3X+noz602BN2pe55HAOYrR4iOoS3AJ9nuHAjPbtxereawXhVrfZaqHCjQWw5vJZOFmTD70VAF1oMJfKcY9Ze7tHYpZNFpjTaN3OFUzrTG+f+z0dAOVhg57ZpqwTyqmujYEL2c=
