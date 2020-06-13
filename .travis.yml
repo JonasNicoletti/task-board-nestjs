@@ -1,3 +1,13 @@
+language: node_js
+node_js:
+    - "10"
+    - "node"
+before_install:
+    - npm i -g npm@latest
+install:
+    - npm install
+script:
+    - npm run build
 deploy:
     provider: heroku
     app: task-board-backend
