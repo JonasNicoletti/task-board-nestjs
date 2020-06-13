@@ -21,7 +21,8 @@ export function DatabaseOrmModule(): DynamicModule {
       definitions: {
         path: join(process.cwd(), 'src/graphql.ts'),
       },
-      playground: true
+      playground: true,
+      introspection: true
     }),
     DatabaseOrmModule(),
     TaskModule,
