@@ -40,13 +40,11 @@ export class TaskResolver {
 
     @ResolveField()
     async state(@Parent() task: Task): Promise<StateDTO> {
-        const { id } = task;
-        return this.stateService.findOneById(id);
+        return this.stateService.findOneById(task.state.id);
     }
 
     @ResolveField()
     async category(@Parent() task: Task): Promise<Category> {
-        const { id } = task;
-        return this.categoryService.findById(id);
+        return this.categoryService.findById(task.category.id);
     }
 }
