@@ -9,7 +9,7 @@ export class Task {
     id: number;
 
     @Column()
-    title: string;
+    title: string;  
 
     @Column()
     description: string;
@@ -17,9 +17,9 @@ export class Task {
     @Column()
     createdAt: Date;
 
-    @ManyToOne(() => State, {cascade: true})
+    @ManyToOne(() => State, {cascade: true, eager: true})
     state: State;    
     
-    @ManyToOne(() => Category, {cascade: true})
+    @ManyToOne(() => Category, {cascade: true, eager: true})
     category: Category;
 }

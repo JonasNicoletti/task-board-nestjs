@@ -16,7 +16,8 @@ export class TaskService {
         private categoryService: CategoryService
     ) { }
 
-    findAll(): Promise<Task[]> {
+    async findAll(): Promise<Task[]> {
+        this.taskReposity.findOne(1).then(r => console.log(r)); 
         return this.taskReposity.find();
     }
 
@@ -37,7 +38,7 @@ export class TaskService {
             task.category = category;
         }
 
-        return this.taskReposity.save(task);
+        return this.taskReposity.save(task);    
     }
 
 }

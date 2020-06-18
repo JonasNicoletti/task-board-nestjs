@@ -20,7 +20,6 @@ export class TaskResolver {
 
     @Mutation()
     async createTask(@Args('task') task: CreateTaskDTO): Promise<TaskDTO> {
-        console.log(task);
         return this.taskService.create(task)
             .then(t => this.toTaskDTO(t))
             .catch((error) => { return { error: error } });
@@ -33,6 +32,7 @@ export class TaskResolver {
                 title: t.title,
                 description: t.description,
                 createdAt: t.createdAt.toDateString(),
+                category: t.category,
                 state: t.state
             }
         }
@@ -40,11 +40,14 @@ export class TaskResolver {
 
     @ResolveField()
     async state(@Parent() task: Task): Promise<StateDTO> {
-        return this.stateService.findOneById(task.state.id);
+        return this.stateService.findOneById(task.state?.id);
     }
 
     @ResolveField()
     async category(@Parent() task: Task): Promise<Category> {
-        return this.categoryService.findById(task.category.id);
+        if (task.category?.id === undefined) {
+            return undefined;
+        }
+        return this.categoryService.findById(task.category?.id);
     }
 }
