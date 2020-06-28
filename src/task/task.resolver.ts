@@ -31,7 +31,7 @@ export class TaskResolver {
                 id: t.id,
                 title: t.title,
                 description: t.description,
-                createdAt: t.createdAt.toDateString(),
+                createdAt: t.createdAt.toUTCString(),
                 category: t.category,
                 state: t.state
             }
